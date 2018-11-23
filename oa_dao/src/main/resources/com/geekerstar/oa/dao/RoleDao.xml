@@ -4,4 +4,16 @@
     <select id="findObjects" resultType="com.geekerstar.oa.entity.Role">
         select id,name,note,create_time createdTime,create_user createdUser from roles
     </select>
+    <select id="findObjectById" resultType="com.geekerstar.oa.entity.Role">
+        select id,name,note,create_time createdTime,create_user createdUser from roles where id = #{id}
+    </select>
+    <delete id="deleteObject" >
+        delete from roles where id = #{id}
+    </delete>
+    <insert id="insertObject">
+        insert into roles values(null,#{name},#{note},now(),#{createdUser})
+    </insert>
+    <update id="updateObject" >
+        update roles set name=#{name},note=#{note} where id =#{id}
+    </update>
 </mapper>

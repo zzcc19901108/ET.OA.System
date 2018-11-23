@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.4//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.geekerstar.oa.dao.RolePermDao">
+   <select id="findPermIdsByRoleId" resultType="int">
+       select perm_id from where role_id = #{roleId}
+   </select>
+    <delete id="deleteObjectsByRoleId" >
+        delete from role_perms where role_id = {roleId}
+    </delete>
+    <delete id="deleteObjectsByPermId" >
+        delete from role_perms where perm_id = {permId}
+    </delete>
+    <insert id="insertObjects">
+        insert into role_perms (role_id,perm_id)values
+        <foreach collection="permIds" separator="," open="" close="" item="permId">
+            (#{roleId},#{permId})
+        </foreach>
+    </insert>
+</mapper>
