@@ -1,6 +1,7 @@
 package com.geekerstar.oa.global;
 
 import com.geekerstar.oa.dao.RoleDao;
+import com.geekerstar.oa.entity.Role;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -15,10 +16,10 @@ public class Contant {
 
     //职务
     public static List<String> getPosts(){
-        List<Object> roles = roleDao.findObjects();
+        List<Role> roles = roleDao.findObjects();
         List<String> list = new ArrayList<String>();
-        for (Object role : roles) {
-            list.add(role.toString());
+        for (Role role : roles) {
+            list.add(role.getName());
         }
         return list;
     }
