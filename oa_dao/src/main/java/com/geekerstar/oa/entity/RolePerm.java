@@ -2,7 +2,7 @@ package com.geekerstar.oa.entity;
 
 import java.io.Serializable;
 
-public class RolePerms implements Serializable {
+public class RolePerm implements Serializable {
     private static final long serialVersionUID = -2020672457982256807L;
     private Integer id;
     private Integer roleId;

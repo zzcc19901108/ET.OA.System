@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 /*角色pojo对象*/
-public class Roles implements Serializable {
+public class Role implements Serializable {
     private static final long serialVersionUID = -4182802114544865765L;
     /**/
     private Integer id;
