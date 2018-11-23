@@ -2,7 +2,7 @@ package com.geekerstar.oa.entity;
 
 import java.io.Serializable;
 
-public class perm implements Serializable {
+public class Perm implements Serializable {
     private static final long serialVersionUID = 2250398866753191271L;
     private Integer id;
     private String name;
