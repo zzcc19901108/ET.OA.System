@@ -1,26 +1,23 @@
 package com.geekerstar.oa.global;
 
-import com.geekerstar.oa.dao.RoleDao;
-import com.geekerstar.oa.entity.Role;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-
 import java.util.ArrayList;
 import java.util.List;
 
-@Component
 public class Contant {
 
-    @Autowired
-    private static RoleDao roleDao ;
 
     //职务
+    public static final String POST_STAFF="员工";
+    public static final String POST_FM="部门经理";
+    public static final String POST_GM="总经理";
+    public static final String POST_CASHIER="财务";
+
     public static List<String> getPosts(){
-        List<Role> roles = roleDao.findObjects();
         List<String> list = new ArrayList<String>();
-        for (Role role : roles) {
-            list.add(role.getName());
-        }
+        list.add(POST_STAFF);
+        list.add(POST_FM);
+        list.add(POST_GM);
+        list.add(POST_CASHIER);
         return list;
     }
 
