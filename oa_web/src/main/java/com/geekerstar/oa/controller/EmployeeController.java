@@ -18,6 +18,8 @@ public class EmployeeController {
     private DepartmentBiz departmentBiz;
     @Autowired
     private EmployeeBiz employeeBiz;
+    @Autowired
+    private Contant contant;
 
     @RequestMapping("/list")
     public String list(Map<String,Object> map){
@@ -28,7 +30,7 @@ public class EmployeeController {
     public String toAdd(Map<String,Object> map){
         map.put("employee",new Employee());
         map.put("dlist",departmentBiz.getAll());
-        map.put("plist", Contant.getPosts());
+        map.put("plist", contant.getPosts());
         return "employee_add";
     }
     @RequestMapping("/add")
@@ -41,7 +43,7 @@ public class EmployeeController {
     public String toUpdate(String sn,Map<String,Object> map){
         map.put("employee",employeeBiz.get(sn));
         map.put("dlist",departmentBiz.getAll());
-        map.put("plist", Contant.getPosts());
+        map.put("plist", contant.getPosts());
         return "employee_update";
     }
     @RequestMapping("/update")

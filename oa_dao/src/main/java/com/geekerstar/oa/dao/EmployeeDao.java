@@ -2,6 +2,7 @@ package com.geekerstar.oa.dao;
 
 import com.geekerstar.oa.entity.Department;
 import com.geekerstar.oa.entity.Employee;
+import com.geekerstar.oa.vo.EmpVo;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
@@ -15,4 +16,5 @@ public interface EmployeeDao {
     Employee select(String sn);
     List<Employee> selectAll();
     List<Employee> selectByDepartmentAndPost(@Param("dsn") String dsn, @Param("post") String post);
+    List<EmpVo> findEmpVosBySn(Integer sn);
 }

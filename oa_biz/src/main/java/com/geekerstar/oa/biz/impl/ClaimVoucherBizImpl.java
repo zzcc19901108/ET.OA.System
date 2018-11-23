@@ -93,7 +93,7 @@ public class ClaimVoucherBizImpl implements ClaimVoucherBiz {
         Employee employee = employeeDao.select(claimVoucher.getCreateSn());
 
         claimVoucher.setStatus(Contant.CLAIMVOUCHER_SUBMIT);
-        claimVoucher.setNextDealSn(employeeDao.selectByDepartmentAndPost(employee.getDepartmentSn(),Contant.POST_FM).get(0).getSn());
+        claimVoucher.setNextDealSn(employeeDao.selectByDepartmentAndPost(employee.getDepartmentSn(),"部门经理").get(0).getSn());
         claimVoucherDao.update(claimVoucher);
 
         DealRecord dealRecord = new DealRecord();
@@ -112,14 +112,14 @@ public class ClaimVoucherBizImpl implements ClaimVoucherBiz {
         dealRecord.setDealTime(new Date());
 
         if(dealRecord.getDealWay().equals(Contant.DEAL_PASS)){
-            if(claimVoucher.getTotalAmount()<=Contant.LIMIT_CHECK || employee.getPost().equals(Contant.POST_GM)){
+            if(claimVoucher.getTotalAmount()<=Contant.LIMIT_CHECK || employee.getPost().equals("总经理")){
                 claimVoucher.setStatus(Contant.CLAIMVOUCHER_APPROVED);
-                claimVoucher.setNextDealSn(employeeDao.selectByDepartmentAndPost(null,Contant.POST_CASHIER).get(0).getSn());
+                claimVoucher.setNextDealSn(employeeDao.selectByDepartmentAndPost(null,"财务").get(0).getSn());
 
                 dealRecord.setDealResult(Contant.CLAIMVOUCHER_APPROVED);
             }else{
                 claimVoucher.setStatus(Contant.CLAIMVOUCHER_RECHECK);
-                claimVoucher.setNextDealSn(employeeDao.selectByDepartmentAndPost(null,Contant.POST_GM).get(0).getSn());
+                claimVoucher.setNextDealSn(employeeDao.selectByDepartmentAndPost(null,"总经理").get(0).getSn());
 
                 dealRecord.setDealResult(Contant.CLAIMVOUCHER_RECHECK);
             }

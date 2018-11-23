@@ -1,23 +1,32 @@
 package com.geekerstar.oa.global;
 
+import com.geekerstar.oa.dao.RoleDao;
+import com.geekerstar.oa.entity.Role;
+import com.mysql.jdbc.interceptors.SessionAssociationInterceptor;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.mybatis.spring.SqlSessionFactoryBean;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
+
 import java.util.ArrayList;
 import java.util.List;
 
+@Service
 public class Contant {
 
+    @Autowired
+    private RoleDao roleDao;
 
     //职务
-    public static final String POST_STAFF="员工";
-    public static final String POST_FM="部门经理";
-    public static final String POST_GM="总经理";
-    public static final String POST_CASHIER="财务";
 
-    public static List<String> getPosts(){
+    public List<String> getPosts(){
+        List<Role> roles = roleDao.findObjects();
         List<String> list = new ArrayList<String>();
-        list.add(POST_STAFF);
-        list.add(POST_FM);
-        list.add(POST_GM);
-        list.add(POST_CASHIER);
+        for (Role role :roles){
+            list.add(role.getName());
+        }
         return list;
     }
 
